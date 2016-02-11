@@ -24,6 +24,7 @@ namespace ServerSocket
 
         public async void Star()
         {
+            //Fecha a conexão com a porta que está escutando atualmente
             if (listener != null)
             {
                 await listener.CancelIOAsync();
@@ -31,8 +32,11 @@ namespace ServerSocket
                 listener = null;
             }
 
+            //Criar uma nova instancia do listerner
             listener = new StreamSocketListener();
+            //Adiciona o evento de conexão recebida ao método Listener_ConnectionReceived
             listener.ConnectionReceived += Listener_ConnectionReceived;
+            //Espera fazer o bind da porta
             await listener.BindServiceNameAsync(Port.ToString());
         }
 
@@ -44,22 +48,31 @@ namespace ServerSocket
                 while (true)
                 {
                     uint sizeFieldCount = await reader.LoadAsync(sizeof(uint));
-                    //if desconneted
+                    //Caso ocora um desconexão
                     if (sizeFieldCount != sizeof(uint))
                         return;
 
+                    //Tamanho da string
                     uint stringLenght = reader.ReadUInt32();
+                    //Ler os dados do InputStream
                     uint actualStringLength = await reader.LoadAsync(stringLenght);
-                    //if desconneted
+                    //Caso ocora um desconexão
                     if (stringLenght != actualStringLength)
                         return;
+                    //Dispara evento de dado recebido
                     if (OnDataRecived != null)
-                        OnDataRecived(reader.ReadString(actualStringLength));
+                    {
+                        //Le a string com o tamanho passado
+                        string data = reader.ReadString(actualStringLength);
+                        //Dispara evento de dado recebido
+                        OnDataRecived(data);
+                    }
                 }
                 
             }
             catch (Exception ex)
             {
+                // Dispara evento em caso de erro, com a mensagem de erro
                 if (OnError != null)
                     OnError(ex.Message);
             }
