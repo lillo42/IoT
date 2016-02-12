@@ -52,12 +52,17 @@ namespace StreamSocketUniversalApp
 
         public async void Send(string message)
         {
+            //Envia o tamanho da string
             _writer.WriteUInt32(_writer.MeasureString(message));
+            //Envia a string em si
             _writer.WriteString(message);
 
             try
             {
+                //Faz o Envio da mensagem
                 await _writer.StoreAsync();
+                //Limpa para o proximo envio de mensagem
+                await _writer.FlushAsync();
             }
             catch (Exception ex)
             {
