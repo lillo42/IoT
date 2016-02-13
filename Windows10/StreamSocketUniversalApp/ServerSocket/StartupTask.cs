@@ -24,9 +24,9 @@ namespace ServerSocket
             taskInstance.GetDeferral();
             var socket = new SocketServer(9000);
             ThreadPool.RunAsync(x => {
-                socket.Star();
                 socket.OnError += socket_OnError;
                 socket.OnDataRecived += Socket_OnDataRecived;
+                socket.Star();
             });
         }
 

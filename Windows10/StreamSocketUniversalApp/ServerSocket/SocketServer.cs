@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Windows.Networking.Sockets;
 using Windows.Storage.Streams;
 
@@ -24,20 +25,30 @@ namespace ServerSocket
 
         public async void Star()
         {
-            //Fecha a conexão com a porta que está escutando atualmente
-            if (listener != null)
+            try
             {
-                await listener.CancelIOAsync();
-                listener.Dispose();
-                listener = null;
-            }
+                //Fecha a conexão com a porta que está escutando atualmente
+                if (listener != null)
+                {
+                    await listener.CancelIOAsync();
+                    listener.Dispose();
+                    listener = null;
+                }
 
-            //Criar uma nova instancia do listerner
-            listener = new StreamSocketListener();
-            //Adiciona o evento de conexão recebida ao método Listener_ConnectionReceived
-            listener.ConnectionReceived += Listener_ConnectionReceived;
-            //Espera fazer o bind da porta
-            await listener.BindServiceNameAsync(Port.ToString());
+                //Criar uma nova instancia do listerner
+                listener = new StreamSocketListener();
+
+                //Adiciona o evento de conexão recebida ao método Listener_ConnectionReceived
+                listener.ConnectionReceived += Listener_ConnectionReceived;
+                //Espera fazer o bind da porta
+                await listener.BindServiceNameAsync(Port.ToString());
+            }
+            catch (Exception e)
+            {
+                //Caso aconteça um erro, dispara o evento de erro
+                if (OnError != null)
+                    OnError(e.Message);
+            }
         }
 
         private async void Listener_ConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
@@ -68,7 +79,7 @@ namespace ServerSocket
                         OnDataRecived(data);
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
