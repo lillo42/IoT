@@ -38,7 +38,7 @@ namespace StreamSocketUniversalApp
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
-            _socket.Send(txbMessage.Text);
+            _socket.Send(txtMessage.Text);
         }
     }
 }
