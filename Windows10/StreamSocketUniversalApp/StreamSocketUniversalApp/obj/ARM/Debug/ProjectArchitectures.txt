@@ -1,0 +1,1 @@
+C:\Users\rafa_\Documents\GitHub\IoT\Windows10\StreamSocketUniversalApp\StreamSocketUniversalApp\StreamSocketUniversalApp.csproj;arm
