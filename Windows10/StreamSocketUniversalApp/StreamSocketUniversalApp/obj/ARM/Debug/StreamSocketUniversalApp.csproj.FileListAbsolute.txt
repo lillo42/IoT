@@ -189,3 +189,4 @@ C:\Users\rafa_\Documents\GitHub\IoT\Windows10\StreamSocketUniversalApp\StreamSoc
 C:\Users\rafa_\Documents\GitHub\IoT\Windows10\StreamSocketUniversalApp\StreamSocketUniversalApp\obj\ARM\Debug\qualifiers.txt.intermediate
 C:\Users\rafa_\Documents\GitHub\IoT\Windows10\StreamSocketUniversalApp\StreamSocketUniversalApp\obj\ARM\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\rafa_\Documents\GitHub\IoT\Windows10\StreamSocketUniversalApp\StreamSocketUniversalApp\obj\ARM\Debug\ProjectArchitectures.txt
+C:\Users\rafa_\Documents\GitHub\IoT\Windows10\StreamSocketUniversalApp\StreamSocketUniversalApp\obj\ARM\Debug\StreamSocketUniversalApp.csprojResolveAssemblyReference.cache
