@@ -3,7 +3,8 @@
 *.dll
 *.winmd
 *.pdb
-Windows10/StreamSocketUniversalApp/ServerSocket/obj/*
 *.cache
+Windows10/StreamSocketUniversalApp/ServerSocket/obj/*
+Windows10/StreamSocketUniversalApp/ServerSocket/bin/*
 Windows10/CryptoMessage/ClientCrypto/ClientCrypto/obj/*
 Windows10/CryptoMessage/ServerCrypto/ServerCrypto/obj/*
