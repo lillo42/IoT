@@ -4,6 +4,8 @@
 *.winmd
 *.pdb
 *.cache
+*.pri
+*.state
 Windows10/StreamSocketUniversalApp/ServerSocket/obj/*
 Windows10/StreamSocketUniversalApp/ServerSocket/bin/*
 Windows10/CryptoMessage/ClientCrypto/ClientCrypto/obj/*

@@ -12,6 +12,7 @@ namespace ServerSocket
 {
     public sealed class StartupTask : IBackgroundTask
     {
+        private SocketServer socket;
         public void Run(IBackgroundTaskInstance taskInstance)
         {
             // 
@@ -22,7 +23,7 @@ namespace ServerSocket
             // described in http://aka.ms/backgroundtaskdeferral
             //
             taskInstance.GetDeferral();
-            var socket = new SocketServer(9000);
+            socket = new SocketServer(9000);
             ThreadPool.RunAsync(x => {
                 socket.OnError += socket_OnError;
                 socket.OnDataRecived += Socket_OnDataRecived;
@@ -32,7 +33,7 @@ namespace ServerSocket
 
         private void Socket_OnDataRecived(string data)
         {
-            
+            socket.Send("Text Recive:" + data);
         }
 
         private void socket_OnError(string message)

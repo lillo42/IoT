@@ -11,6 +11,7 @@ namespace ServerSocket
         public int Port { get { return _port; } }
 
         private StreamSocketListener listener;
+        private DataWriter _writer;
 
         public delegate void DataRecived(string data);
         public event DataRecived OnDataRecived;
@@ -54,6 +55,7 @@ namespace ServerSocket
         private async void Listener_ConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
         {
             var reader = new DataReader(args.Socket.InputStream);
+            _writer = new DataWriter(args.Socket.OutputStream);
             try
             {
                 while (true)
@@ -86,6 +88,30 @@ namespace ServerSocket
                 // Dispara evento em caso de erro, com a mensagem de erro
                 if (OnError != null)
                     OnError(ex.Message);
+            }
+        }
+
+        public async void Send(string message)
+        {
+            if (_writer != null)
+            {
+                //Envia o tamanho da string
+                _writer.WriteUInt32(_writer.MeasureString(message));
+                //Envia a string em si
+                _writer.WriteString(message);
+
+                try
+                {
+                    //Faz o Envio da mensagem
+                    await _writer.StoreAsync();
+                    //Limpa para o proximo envio de mensagem
+                    await _writer.FlushAsync();
+                }
+                catch (Exception ex)
+                {
+                    if (OnError != null)
+                        OnError(ex.Message);
+                }
             }
         }
     }

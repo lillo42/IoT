@@ -26,14 +26,25 @@ namespace StreamSocketUniversalApp
         public MainPage()
         {
             this.InitializeComponent();
+            txtPort.Text = "9000";
         }
 
         private void btnConnect_Click(object sender, RoutedEventArgs e)
         {
-            if(_socket != null)
+            if (_socket != null)
+            {
+                _socket.Close();
+                _socket.OnDataRecived -= socket_OnDataRecived;
                 _socket = null;
+            }
             _socket = new SocketClient(txtIp.Text, Convert.ToInt32(txtPort.Text));
             _socket.Connect();
+            _socket.OnDataRecived += socket_OnDataRecived;
+        }
+
+        private void socket_OnDataRecived(string data)
+        {
+            txbMessageRecived.Text = data;
         }
 
         private void btnSend_Click(object sender, RoutedEventArgs e)

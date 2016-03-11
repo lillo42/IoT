@@ -1,0 +1,8 @@
+/out:"C:\Users\rafa_\Documents\GitHub\IoT\Windows10\StreamSocketUniversalApp\StreamSocketUniversalApp\obj\x86\Debug\ilc\intermediate\SgGenerated\\"
+/int:"C:\Users\rafa_\Documents\GitHub\IoT\Windows10\StreamSocketUniversalApp\StreamSocketUniversalApp\obj\x86\Debug\ilc\intermediate\\"
+/ref:"C:\Users\rafa_\Documents\GitHub\IoT\Windows10\StreamSocketUniversalApp\StreamSocketUniversalApp\obj\x86\Debug\ilc\intermediate\PreMergeILTransformed\\"
+/ref:"C:\Users\rafa_\Documents\GitHub\IoT\Windows10\StreamSocketUniversalApp\StreamSocketUniversalApp\obj\x86\Debug\ilc\in\\"
+/ref:"C:\Program Files (x86)\MSBuild\Microsoft\.NetNative\x86\ilc\lib\Private\\"
+/ref:"C:\Users\rafa_\Documents\GitHub\IoT\Windows10\StreamSocketUniversalApp\StreamSocketUniversalApp\obj\x86\Debug\ilc\in\\"
+/ref:"C:\Users\rafa_\Documents\GitHub\IoT\Windows10\StreamSocketUniversalApp\StreamSocketUniversalApp\obj\x86\Debug\ilc\in\WinMetadata\\"
+/ca:System.Private.CoreLib
