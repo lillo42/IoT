@@ -1,1 +1,0 @@
-C:\Users\rafa_\Documents\GitHub\IoT\Windows10\StreamSocketUniversalApp\ServerSocket\ServerSocket.csproj;x86

@@ -21,7 +21,7 @@ namespace ServerCrypto
 
             var server = new ServerTcp(9000);
             server.OnError += Server_OnError;
-            server.OnDataRecive += Server_OnDataRecive;
+            server.OnDataReceive += Server_OnDataReceive;
 
             ThreadPool.RunAsync(x =>
             {
@@ -29,7 +29,7 @@ namespace ServerCrypto
             });
         }
 
-        private async void Server_OnDataRecive(ServerTcp sender, string args)
+        private async void Server_OnDataReceive(ServerTcp sender, string args)
         {
             //Answear text Recive
             await sender.SendAsync(string.Concat("Text Recive:", args));

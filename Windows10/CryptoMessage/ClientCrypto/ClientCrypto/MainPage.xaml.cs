@@ -18,7 +18,7 @@ namespace ClientCrypto
             this.InitializeComponent();
 
             _client = new SocketClient();
-            _client.OnDataRecive += Socket_OnDataRecive;
+            _client.OnDataReceive += Socket_OnDataRecive;
             _client.OnError += Socket_OnError;
         }
 

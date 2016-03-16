@@ -12,16 +12,21 @@ namespace ServerCrypto
 {
     internal class ServerTcp
     {
+        //Port to bind
         private readonly int _port;
         public int Port { get { return _port; } }
 
+        // Variable bind some port and listening when someone are connect
         private StreamSocketListener _listener = new StreamSocketListener();
+        // If someone are connect use this StreamSocket to communicate with client
         private StreamSocket _socket;
+        // When connection is close, send signal to stop listening and send message
         private CancellationTokenSource _cancel;
 
-        //Events
+        //Event when have error
         public event TypedEventHandler<ServerTcp, string> OnError;
-        public event TypedEventHandler<ServerTcp, string> OnDataRecive;
+        //Event when some data is receive
+        public event TypedEventHandler<ServerTcp, string> OnDataReceive;
 
         public ServerTcp(int port)
         {
@@ -49,7 +54,6 @@ namespace ServerCrypto
 
                 //Assinged event when have a new connection
                 _listener.ConnectionReceived += Listener_ConnectionReceived;
-                _listener.Control.KeepAlive = true;
                 //Bind port
                 await _listener.BindServiceNameAsync(_port.ToString());
             }
@@ -63,7 +67,7 @@ namespace ServerCrypto
         {
             try
             {
-                // DataWriter, who is send a message
+                // DataWriter to send message to client
                 var writer = new DataWriter(_socket.OutputStream);
                 //Encrypt message
                 byte[] data = Cryptographic.Encrypt(text, "123");
@@ -140,8 +144,8 @@ namespace ServerCrypto
 
         private void InvokeOnDataRecive(string mensagem)
         {
-            if (OnDataRecive != null)
-                OnDataRecive(this, mensagem);
+            if (OnDataReceive != null)
+                OnDataReceive(this, mensagem);
         }
     }
 }
