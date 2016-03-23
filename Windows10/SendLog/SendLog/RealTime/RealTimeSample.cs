@@ -1,6 +1,5 @@
 ﻿using SendLog.Log;
 using SendLog.Socket;
-using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

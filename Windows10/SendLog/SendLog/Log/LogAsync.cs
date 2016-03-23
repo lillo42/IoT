@@ -1,6 +1,4 @@
-﻿using SendLog.Log.File;
-using SendLog.Log.Memory;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 
 namespace SendLog.Log
 {
