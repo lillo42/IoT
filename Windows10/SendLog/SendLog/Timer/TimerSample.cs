@@ -11,18 +11,18 @@ namespace SendLog.Timer
         //private readonly SendFile _file;
         private readonly SocketClient _client;
         private CancellationToken _cancel;
-        private DateTime _lastSend = DateTime.Now;
-        private int _interval;
+        private readonly TimeSpan _interval;
+        private System.Threading.Timer _timer;
 
         public TimerSample(SocketClient client, CancellationToken cancel)
         {
             _client = client;
             _cancel = cancel;
-            _interval = 30;
+            _interval = TimeSpan.FromSeconds(3);
         }
 
 
-        private async void SendAsync()
+        private async void SendAsync(object state)
         {
             var logMemory = new LogConsumerMemory(_client.Output, _cancel);
             await logMemory.StartAsync();
@@ -35,24 +35,14 @@ namespace SendLog.Timer
 
             //var sendFile = new SendFile(_client.Output, LogAsync.Instance.Filename);
             //sendFile.Send();
+            _timer.Change(TimeSpan.FromSeconds(30), Timeout.InfiniteTimeSpan);
         }
 
         public void Begin()
         {
-            Task.Run(() => Run());
+            _timer = new System.Threading.Timer(SendAsync, null, TimeSpan.FromSeconds(30), Timeout.InfiniteTimeSpan);
         }
-
-        private void Run()
-        {
-            while (!_cancel.IsCancellationRequested)
-            {
-                TimeSpan last = DateTime.Now.Subtract(_lastSend);
-                if (last.Seconds > _interval)
-                {
-                    SendAsync();
-                    _lastSend = DateTime.Now;
-                }
-            }
-        }
+   
+            
     }
 }

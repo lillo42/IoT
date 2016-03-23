@@ -6,7 +6,6 @@ namespace SendLog.Log
     {
         private static LogAsync _instance;
         private static object locker = new object();
-        private ConcurrentQueue<string> _queueLog = new ConcurrentQueue<string>();
         private readonly LogMemory _logInMemory;
         private readonly LogFile _logInFile;
         private const string _filename = "log.txt";
