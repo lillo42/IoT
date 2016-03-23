@@ -9,4 +9,8 @@
 Windows10/StreamSocketUniversalApp/ServerSocket/obj/*
 Windows10/StreamSocketUniversalApp/ServerSocket/bin/*
 Windows10/CryptoMessage/ClientCrypto/ClientCrypto/obj/*
+Windows10/CryptoMessage/ClientCrypto/ClientCrypto/bin/*
 Windows10/CryptoMessage/ServerCrypto/ServerCrypto/obj/*
+Windows10/CryptoMessage/ServerCrypto/ServerCrypto/bin/*
+Windows10/SendLog/SendLog/obj/*
+Windows10/SendLog/SendLog/bin/*
