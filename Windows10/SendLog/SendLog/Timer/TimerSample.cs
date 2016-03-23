@@ -44,11 +44,14 @@ namespace SendLog.Timer
 
         private void Run()
         {
-            while(!_cancel.IsCancellationRequested)
+            while (!_cancel.IsCancellationRequested)
             {
                 TimeSpan last = DateTime.Now.Subtract(_lastSend);
                 if (last.Seconds > _interval)
+                {
                     SendAsync();
+                    _lastSend = DateTime.Now;
+                }
             }
         }
     }
